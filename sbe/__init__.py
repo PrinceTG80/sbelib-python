@@ -260,6 +260,11 @@ class Set:
         bits = bitstring.Bits(uint=val, length=length)
         return [self.choices[i].name for i, v in enumerate(bits) if v]
 
+    def find_name_by_value(self, val: str) -> str:
+        if val not in (x.value for x in self.choices):
+            return None
+        return next(x for x in self.choices if x.value == val).name
+
     def __repr__(self):
         return f"<Set '{self.name}'>"
 
